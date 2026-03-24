@@ -5,15 +5,24 @@ Backend e Frontend, desacoplados, se comunicando exclusivamente via API REST.
 
 Jogo de adivinhação, onde o usuário deve descobrir um código secreto gerado pelo servidor em um número limitado de tentativas.
 
+
+## Versão Hospedada - Vercel & Railway
+
+Você pode acessar a aplicação pelos links abaixo:
+
+FRONT-END: https://mastermaind-henrymodestos-projects.vercel.app/
+
+SWAGGER: https://mastermaindgame-production.up.railway.app/swagger
+
 ---
 
-## 🛠 Arquitetura e Decisões Técnicas
+## Arquitetura e Decisões Técnicas
 
 **Backend (Python)**: Foi Desenvolvido com Flask, utilizando arquitetura padrão. Os `Controllers` lidam com as rotas e entradas de dados, os `Services` concentram as regras de negócio (lógica do jogo), os `Repositories` fazem a comunicação com o banco usando SQLAlchemy e os `Models` definem a estrutura dos dados. 
 
 **Frontend (Angular)**: Foi construído com Angular (v21). A comunicação com o backend é feita via Services com HttpClient, com interceptação de requisições usando JWT e proteção de rotas com AuthGuards. A interface foi desenvolvida com **Angular Material**.
 
-<details>
+
   <summary><strong style="font-size: 20px;">Tecnologias </strong></summary>
 
 
@@ -36,8 +45,7 @@ Jogo de adivinhação, onde o usuário deve descobrir um código secreto gerado 
 ![Angular Material](https://img.shields.io/badge/Angular_Material-0D1117?style=for-the-badge&logo=angular&logoColor=red&labelColor=0D1117)
 ![ngx-toastr](https://img.shields.io/badge/ngx--toastr-0D1117?style=for-the-badge&logo=angular&logoColor=orange&labelColor=0D1117)
 ![Vitest](https://img.shields.io/badge/Vitest-0D1117?style=for-the-badge&logo=vitest&logoColor=yellow&labelColor=0D1117)
----
-</details>
+
 ---
 <details>
   <summary><strong style="font-size: 20px;">Versões </strong></summary>

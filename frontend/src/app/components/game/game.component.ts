@@ -27,9 +27,7 @@ import { ToastrService } from 'ngx-toastr';
             <span class="attempts-counter" [class.danger]="gameState.attempts_left <= 3">
               {{ gameState.attempts_left }} tentativas restantes
             </span>
-            <span class="status-pill" [class]="'pill-' + gameState.status">
-              {{ gameState.status === 'ongoing' ? 'Em andamento' : gameState.status === 'won' ? '🏆 Vitória' : '💀 Derrota' }}
-            </span>
+
           </div>
         </div>
       </nav>
@@ -325,7 +323,7 @@ export class GameComponent implements OnInit {
       this.gameService.makeAttempt(this.gameId, values).subscribe({
         next: (result) => {
           this.isSubmitting = false;
-          if (result.status === 'won') this.toastr.success(`Você venceu em ${result.attempt_number} tentativas! 🎉`);
+          if (result.status === 'won') this.toastr.success(`Você venceu em ${result.attempt_number} tentativas!`);
           else if (result.status === 'lost') this.toastr.error('Fim de jogo! Você usou todas as tentativas.');
           this.loadGame();
           this.attemptForm.reset();

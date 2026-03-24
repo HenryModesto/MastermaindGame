@@ -65,7 +65,6 @@ import { ToastrService } from 'ngx-toastr';
                 <h3>Nova Partida</h3>
                 <p>Inicie um novo desafio de código secreto. Você tem 10 tentativas!</p>
               </div>
-              <span class="action-tag">JOGAR AGORA →</span>
               <div class="action-arrow">→</div>
             </div>
 
@@ -99,13 +98,6 @@ import { ToastrService } from 'ngx-toastr';
         </section>
 
       </div>
-
-      <!-- FOOTER -->
-      <footer class="footer">
-        <span class="logo-box small">itaú</span>
-        <span>Mastermind © {{ year }} — Desenvolvido para o case Itaú</span>
-      </footer>
-
     </div>
   `,
   styles: [`
@@ -215,9 +207,6 @@ import { ToastrService } from 'ngx-toastr';
     .step-body h4 { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; color: #1C0800; margin-bottom: 4px; }
     .step-body p { font-size: 12px; color: #6B4030; line-height: 1.5; }
     .step-arrow { color: #E03D00; font-size: 18px; font-weight: 700; padding: 4px 12px; opacity: 0.4; align-self: center; flex-shrink: 0; }
-
-    /* FOOTER */
-    .footer { background: #fff; border-top: 1.5px solid #EDCFBD; padding: 14px 28px; display: flex; align-items: center; gap: 12px; font-size: 13px; color: #9B6040; }
 
     @media (max-width: 768px) {
       .hero-inner { flex-direction: column; }

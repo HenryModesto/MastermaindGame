@@ -61,10 +61,6 @@ import { ToastrService } from 'ngx-toastr';
                 <span class="error-msg" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">Senha é obrigatória</span>
               </div>
 
-              <div class="forgot-row">
-                <a href="#" class="link-forgot">Esqueceu a senha?</a>
-              </div>
-
               <button class="btn-submit" type="submit" [disabled]="loginForm.invalid || isLoading">
                 <span *ngIf="!isLoading">Entrar</span>
                 <span *ngIf="isLoading" class="spinner-text"><span class="spinner"></span> Entrando...</span>
@@ -96,16 +92,7 @@ import { ToastrService } from 'ngx-toastr';
       background: radial-gradient(circle at 38% 38%, #E03D00 0%, #FF4500 35%, #FF6200 70%, #FF8C00 100%);
       top: -340px; left: -280px;
       border-radius: 55% 45% 65% 35% / 45% 55% 45% 55%;
-      animation: morph1 11s ease-in-out infinite;
       filter: drop-shadow(0 40px 80px rgba(224,61,0,0.5));
-    }
-    .blob-2 {
-      width: 480px; height: 480px;
-      background: radial-gradient(circle at 40% 60%, #FFB347 0%, #FF5500 80%);
-      bottom: -150px; left: 40px;
-      border-radius: 40% 60% 35% 65% / 60% 40% 65% 35%;
-      animation: morph2 13s ease-in-out infinite;
-      filter: drop-shadow(0 20px 50px rgba(255,85,0,0.4));
     }
     .blob-3 {
       width: 220px; height: 220px;

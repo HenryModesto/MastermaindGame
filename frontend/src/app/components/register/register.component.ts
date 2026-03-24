@@ -103,11 +103,6 @@ function passwordMatchValidator(control: AbstractControl) {
                 </div>
               </div>
 
-              <div class="strength-wrapper" *ngIf="registerForm.get('password')?.value">
-                <div class="strength-bar"><div class="strength-fill" [style.width]="passwordStrength + '%'" [class]="'s-' + strengthLabel"></div></div>
-                <span class="strength-text" [class]="'s-' + strengthLabel">{{ strengthLabel | titlecase }}</span>
-              </div>
-
               <button class="btn-submit" type="submit" [disabled]="registerForm.invalid || isLoading">
                 <span *ngIf="!isLoading">Criar Conta</span>
                 <span *ngIf="isLoading" class="spinner-text"><span class="spinner"></span> Cadastrando...</span>
@@ -135,17 +130,9 @@ function passwordMatchValidator(control: AbstractControl) {
       background: radial-gradient(circle at 38% 38%, #E03D00 0%, #FF4500 35%, #FF6200 70%, #FF8C00 100%);
       top: -340px; left: -280px;
       border-radius: 55% 45% 65% 35% / 45% 55% 45% 55%;
-      animation: morph1 11s ease-in-out infinite;
       filter: drop-shadow(0 40px 80px rgba(224,61,0,0.5));
     }
-    .blob-2 {
-      width: 480px; height: 480px;
-      background: radial-gradient(circle at 40% 60%, #FFB347 0%, #FF5500 80%);
-      bottom: -150px; left: 40px;
-      border-radius: 40% 60% 35% 65% / 60% 40% 65% 35%;
-      animation: morph2 13s ease-in-out infinite;
-      filter: drop-shadow(0 20px 50px rgba(255,85,0,0.4));
-    }
+
     .blob-3 { width: 220px; height: 220px; background: #FF4500; top: 60%; right: 2%; border-radius: 60% 40% 50% 50%; opacity: 0.14; animation: morph1 9s ease-in-out infinite reverse; }
     @keyframes morph1 { 0%,100%{border-radius:55% 45% 65% 35%/45% 55% 45% 55%} 50%{border-radius:35% 65% 45% 55%/65% 35% 55% 45%} }
     @keyframes morph2 { 0%,100%{border-radius:40% 60% 35% 65%/60% 40% 65% 35%} 50%{border-radius:65% 35% 60% 40%/35% 65% 40% 60%} }
@@ -193,15 +180,6 @@ function passwordMatchValidator(control: AbstractControl) {
     .toggle-pw:hover { color: #E03D00; }
 
     .error-msg { display: block; font-size: 11px; color: #b71c1c; margin-top: 4px; font-weight: 600; }
-
-    .strength-wrapper { display: flex; align-items: center; gap: 10px; margin: 10px 0 16px; }
-    .strength-bar { flex: 1; height: 4px; background: #EDCFBD; border-radius: 2px; overflow: hidden; }
-    .strength-fill { height: 100%; border-radius: 2px; transition: width .3s, background .3s; }
-    .s-fraca { background: #b71c1c; color: #b71c1c; }
-    .s-média { background: #FF6200; color: #FF6200; }
-    .s-forte { background: #2e7d32; color: #2e7d32; }
-    .strength-text { font-size: 11px; font-weight: 800; min-width: 40px; text-align: right; }
-
     .btn-submit { width: 100%; padding: 15px; margin-top: 18px; background: linear-gradient(135deg, #E03D00 0%, #FF4500 40%, #FF6200 70%, #FF8C00 100%); color: #fff; border: none; border-radius: 12px; font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; letter-spacing: 0.5px; transition: transform .15s, box-shadow .15s, opacity .15s; box-shadow: 0 8px 28px rgba(224,61,0,0.5); }
     .btn-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(224,61,0,0.6); }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
