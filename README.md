@@ -73,7 +73,7 @@ SWAGGER: https://mastermaindgame-production.up.railway.app/swagger
 **1. Clone o repositório e acesse a pasta raiz:**
 ```bash
 git clone https://github.com/HenryModesto/JogoMastermind.git
-cd <nome-da-pasta>
+cd <JOGOMASTERMIND>
 ```
 
 **2. Crie o arquivo `.env` na raiz do projeto:**
