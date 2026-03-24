@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://mastermaindgame-production.up.railway.app/'
+  apiUrl: 'https://mastermaindgame-production.up.railway.app'
 };
