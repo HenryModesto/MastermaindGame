@@ -18,13 +18,13 @@ SWAGGER: https://mastermaindgame-production.up.railway.app/swagger
 
 ## Arquitetura e Decisões Técnicas
 
+
 **Backend (Python)**: Foi Desenvolvido com Flask, utilizando arquitetura padrão. Os `Controllers` lidam com as rotas e entradas de dados, os `Services` concentram as regras de negócio (lógica do jogo), os `Repositories` fazem a comunicação com o banco usando SQLAlchemy e os `Models` definem a estrutura dos dados. 
 
 **Frontend (Angular)**: Foi construído com Angular (v21). A comunicação com o backend é feita via Services com HttpClient, com interceptação de requisições usando JWT e proteção de rotas com AuthGuards. A interface foi desenvolvida com **Angular Material**.
 
 
-  <summary><strong style="font-size: 20px;">Tecnologias </strong></summary>
-
+<strong style="font-size: 20px;">Tecnologias</strong>
 
 **Backend:**
 
@@ -62,7 +62,7 @@ SWAGGER: https://mastermaindgame-production.up.railway.app/swagger
 - Angular Material 18+
 - Jasmine + Karma (Testes Front)
 </details>
----
+
 <details>
   <summary><strong style="font-size: 20px;">Opção 1 — Rodar com Docker (Recomendado)</strong></summary>
 
@@ -116,7 +116,7 @@ docker-compose down
 ```
 
 </details>
----
+
 
 <details>
   <summary><strong style="font-size: 20px;">Opção 2 — Rodar Manualmente (sem Docker) </strong></summary>
@@ -128,7 +128,6 @@ docker-compose down
 - Node.js 20+
 - PostgreSQL rodando localmente (ou SQLite, veja abaixo)
 
----
 
 ### 1️⃣ Backend
 
@@ -191,7 +190,7 @@ flask run
 
 A API ficará disponível em `http://localhost:5000`.
 
----
+
 
 ### 2️⃣ Frontend
 
@@ -212,7 +211,7 @@ npx ng serve
 
 Acesse no browser: `http://localhost:4200`
 </details>
----
+
 
 <details>
   <summary><strong style="font-size: 20px;">Variáveis de Ambiente (`.env.example`) </strong></summary>
@@ -232,7 +231,6 @@ JWT_ACCESS_TOKEN_EXPIRES=86400
 | `JWT_SECRET_KEY`          | Chave de criptografia dos tokens JWT                   |
 | `JWT_ACCESS_TOKEN_EXPIRES`| Tempo de expiração do token em segundos (padrão: 24h) |
 </details>
----
 
 <details>
   <summary><strong style="font-size: 20px;">Documentação da API
@@ -267,7 +265,7 @@ http://localhost:5000/swagger
 3. Data mais recente em caso de empate
 
 </details>
----
+
 
 <details>
   <summary><strong style="font-size: 20px;">Testes</strong></summary>
@@ -285,7 +283,6 @@ cd frontend
 npx ng test
 ```
 </details>
----
 
 
 
