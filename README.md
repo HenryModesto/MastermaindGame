@@ -269,19 +269,37 @@ npx ng test
 </details>
 
 
+<strong style="font-size: 20px;">Fluxo da Aplicação</strong>
+--- 
 
-<details>
-  <summary><strong style="font-size: 20px;">Fluxo da Aplicação</strong>
-  </summary>
+<strong style="font-size: 14px;">Cadastro</strong>
 
-1. Usuário acessa `http://localhost:4200` → redirecionado para **Login**
+![Cadastro](https://github.com/user-attachments/assets/caab083a-3c67-4b3d-884f-e30c140c8fff)
+
+<strong style="font-size: 14px;">Login</strong>
+
+![Login](https://github.com/user-attachments/assets/3cfe81e0-e0cb-4e30-9321-fc7dd4c46b29)
+
+<strong style="font-size: 14px;">Dashboard</strong>
+
+![Dashboard](https://github.com/user-attachments/assets/7c15a7bc-e0a6-436f-b314-6056b84a0ea1)
+
+<strong style="font-size: 14px;">Game</strong>
+
+![Game](https://github.com/user-attachments/assets/bd21aaa1-b159-452d-8bd4-e80bd0b42aec)
+
+<strong style="font-size: 14px;">Ranking</strong>
+
+![Ranking](https://github.com/user-attachments/assets/83cf8f60-d19c-46f4-b9a4-fe9e228f0b7b)
+
+---
+
+1. Usuário acessa `[https://mastermaind-henrymodestos-projects.vercel.app/]` → redirecionado para **Login**
 2. Faz login ou cria uma conta em **Cadastro**
 3. Após login, acessa o **Dashboard** com opções de Nova Partida e Ranking
 4. Na tela do **Jogo**, digita 4 dígitos (1–6) por tentativa
 5. O backend valida e retorna pinos de feedback:
-   - 🟠 Pino laranja = dígito na posição correta
-   - ⚪ Pino cinza = dígito certo, posição errada
+   - Pino preto = dígito na posição correta
+   - Pino cinza = dígito certo, posição errada
 6. Ao vencer ou esgotar 10 tentativas, exibe resultado
 7. O **Ranking** mostra o melhor resultado de cada jogador, mas só se você acertar.
-
-</details>
