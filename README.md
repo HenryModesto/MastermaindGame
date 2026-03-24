@@ -10,9 +10,9 @@ Jogo de adivinhação, onde o usuário deve descobrir um código secreto gerado 
 
 Você pode acessar a aplicação pelos links abaixo:
 
-FRONT-END: <a href="https://mastermaind-henrymodestos-projects.vercel.app/" target="_blank">Game Website</a>
+FRONT-END: <a href="https://mastermaind-henrymodestos-projects.vercel.app/" target="_blank">Acessar Mastermaind Game</a>
 
-SWAGGER: <a href="https://mastermaindgame-production.up.railway.app/swagger" target="_blank">Ver docs API</a>
+SWAGGER: <a href="https://mastermaindgame-production.up.railway.app/swagger" target="_blank">Acessar docs API</a>
 
 ---
 
