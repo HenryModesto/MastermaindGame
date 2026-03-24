@@ -99,6 +99,7 @@ import { ToastrService } from 'ngx-toastr';
                     (keydown)="onKeyDown($event, i)"
                     (input)="onInput($event, i)"
                     id="pin-input-{{i}}"
+                    autocomplete="off"
                     placeholder="·"
                   />
                 </div>

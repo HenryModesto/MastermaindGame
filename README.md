@@ -155,22 +155,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**Configure o `.env`:**
-```bash
-cp .env.example .env
-```
-
-Abra o `.env` e ajuste a `DATABASE_URL` conforme seu ambiente:
-
-Com PostgreSQL local:
-```env
-DATABASE_URL=postgresql://mastermind_user:mastermind_pass@localhost:5432/mastermind
-```
-
-Com SQLite (mais simples, sem precisar de PostgreSQL):
-```env
-DATABASE_URL=sqlite:///mastermind.db
-```
 
 **Popule o banco:**
 ```bash

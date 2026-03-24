@@ -228,7 +228,7 @@ export class DashboardComponent implements OnInit {
   year = new Date().getFullYear();
 
   steps = [
-    { num: 1, title: 'Código Secreto', desc: 'O sistema gera uma sequência de 4 cores aleatória e secreta.' },
+    { num: 1, title: 'Código Secreto', desc: 'O sistema gera uma sequência de 4 números aleatórios e secreto.' },
     { num: 2, title: 'Tente Adivinhar', desc: 'Você tem até 10 tentativas para descobrir a combinação certa.' },
     { num: 3, title: 'Dicas do Jogo', desc: 'Pinos pretos = cor e posição certa. Pinos brancos = cor certa, posição errada.' },
     { num: 4, title: 'Vença!', desc: 'Quanto menos tentativas usar, maior sua pontuação no ranking.' }
