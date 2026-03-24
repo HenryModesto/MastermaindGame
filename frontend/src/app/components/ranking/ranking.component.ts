@@ -1,10 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { GameService } from '../../services/game.service';
 import { AuthService } from '../../services/auth.service';
@@ -14,96 +9,180 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-ranking',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatCardModule, MatButtonModule, MatIconModule, MatToolbarModule],
+  imports: [CommonModule],
   template: `
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="goBack()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-      <span>Ranking Global - Mastermind</span>
-    </mat-toolbar>
+    <div class="app-shell">
 
-    <div class="container">
-      <mat-card class="ranking-card">
-        <mat-card-header>
-          <mat-card-title>Melhores Jogadores</mat-card-title>
-          <mat-card-subtitle>Menos tentativas primeiro, e depois menor tempo geram melhores posições.</mat-card-subtitle>
-        </mat-card-header>
-        
-        <mat-card-content>
-          <table mat-table [dataSource]="rankingData" class="mat-elevation-z1">
-            
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-              <th mat-header-cell *matHeaderCellDef> Pos. </th>
-              <td mat-cell *matCellDef="let element">
-                <span class="pos-badge" [ngClass]="{'top-1': element.position === 1, 'top-2': element.position === 2, 'top-3': element.position === 3}">
-                  {{ element.position }}º
+      <nav class="navbar">
+        <div class="nav-inner">
+          <div class="nav-brand">
+            <button class="btn-back" (click)="goBack()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+            <span class="logo-box">itaú</span>
+            <span class="nav-title">Ranking Global</span>
+          </div>
+          <div class="nav-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Melhores jogadores
+          </div>
+        </div>
+      </nav>
+
+      <div class="loading-wrap" *ngIf="isLoading">
+        <div class="spinner-lg"></div>
+        <p>Carregando ranking...</p>
+      </div>
+
+      <div class="main-content" *ngIf="!isLoading">
+
+        <div class="table-card">
+          <div class="table-card-header">
+            <div>
+              <h2>Classificação completa</h2>
+              <p>Menos tentativas primeiro, depois menor tempo</p>
+            </div>
+          </div>
+
+          <div class="table-wrap" *ngIf="rankingData.length > 0">
+            <div class="t-head">
+              <div class="c-pos">Pos.</div>
+              <div class="c-player">Jogador</div>
+              <div class="c-att">Tentativas</div>
+              <div class="c-time">Tempo</div>
+              <div class="c-date">Data</div>
+            </div>
+
+            <div
+              *ngFor="let entry of rankingData"
+              class="t-row"
+              [class.row-you]="entry.username === currentUsername"
+            >
+              <div class="c-pos">
+                <span class="pos-badge"
+                  [class.gold]="entry.position === 1"
+                  [class.silver]="entry.position === 2"
+                  [class.bronze]="entry.position === 3">
+                  {{ entry.position }}º
                 </span>
-              </td>
-            </ng-container>
+              </div>
 
-            <!-- Username Column -->
-            <ng-container matColumnDef="username">
-              <th mat-header-cell *matHeaderCellDef> Jogador </th>
-              <td mat-cell *matCellDef="let element"> 
-                <b>{{ element.username }}</b> 
-                <span class="current-user-lbl" *ngIf="element.username === currentUsername">(Você)</span>
-              </td>
-            </ng-container>
+              <div class="c-player">
+                <div class="player-av" [class.av-you]="entry.username === currentUsername">
+                  {{ entry.username.charAt(0).toUpperCase() }}
+                </div>
+                <span class="player-name">{{ entry.username }}</span>
+                <span class="you-chip" *ngIf="entry.username === currentUsername">Você</span>
+              </div>
 
-            <!-- Attempts Column -->
-            <ng-container matColumnDef="attempts">
-              <th mat-header-cell *matHeaderCellDef> Tentativas </th>
-              <td mat-cell *matCellDef="let element"> {{ element.attempts }} </td>
-            </ng-container>
+              <div class="c-att">
+                <span class="att-num">{{ entry.attempts }}</span>
+                <span class="att-label">tentativas</span>
+              </div>
 
-            <!-- Duration Column -->
-            <ng-container matColumnDef="duration_seconds">
-              <th mat-header-cell *matHeaderCellDef> Tempo (s) </th>
-              <td mat-cell *matCellDef="let element"> {{ element.duration_seconds }}s </td>
-            </ng-container>
+              <div class="c-time">
+                <span class="time-val">{{ entry.duration_seconds }}s</span>
+              </div>
 
-            <!-- Date Column -->
-            <ng-container matColumnDef="finished_at">
-              <th mat-header-cell *matHeaderCellDef> Data </th>
-              <td mat-cell *matCellDef="let element"> {{ element.finished_at | date:'dd/MM/yyyy HH:mm' }} </td>
-            </ng-container>
+              <div class="c-date">{{ entry.finished_at | date:'dd/MM/yyyy HH:mm' }}</div>
+            </div>
+          </div>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight-row': row.username === currentUsername}"></tr>
-          </table>
-          <div *ngIf="rankingData.length === 0" class="no-data">Nenhum jogador venceu ainda.</div>
-        </mat-card-content>
-      </mat-card>
+          <div class="no-data" *ngIf="rankingData.length === 0">
+            <span>🎮</span>
+            <p>Nenhum jogador venceu ainda.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   `,
   styles: [`
-    .container { padding: 24px; max-width: 1000px; margin: 0 auto; }
-    mat-toolbar { background-color: var(--primary); color: white; }
-    table { width: 100%; margin-top: 16px; border-radius: 8px; overflow: hidden; }
-    
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .app-shell { min-height: 100vh; background: #FFF0E4; font-family: 'DM Sans', sans-serif; }
+
+    /* NAVBAR */
+    .navbar { background: #fff; border-bottom: 2px solid #EDCFBD; position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { display: flex; align-items: center; gap: 12px; }
+    .btn-back { background: none; border: 1.5px solid #EDCFBD; border-radius: 8px; padding: 7px 10px; cursor: pointer; color: #6B4030; display: flex; align-items: center; transition: all .15s; }
+    .btn-back:hover { border-color: #E03D00; color: #E03D00; }
+    .logo-box { background: #E03D00; color: #fff; font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px; padding: 5px 12px; border-radius: 7px; }
+    .nav-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700; color: #1C0800; }
+    .nav-badge { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #E03D00; border: 1.5px solid #EDCFBD; border-radius: 8px; padding: 6px 14px; }
+
+    /* LOADING */
+    .loading-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; gap: 14px; color: #6B4030; font-weight: 600; }
+    .spinner-lg { width: 36px; height: 36px; border: 3px solid #EDCFBD; border-top-color: #E03D00; border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* MAIN */
+    .main-content { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+    /* TABLE CARD */
+    .table-card { background: #fff; border-radius: 16px; border: 1.5px solid #EDCFBD; overflow: hidden; }
+
+    .table-card-header { padding: 22px 28px 0; }
+    .table-card-header h2 { font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 800; color: #1C0800; margin-bottom: 4px; }
+    .table-card-header p { font-size: 13px; color: #9B6040; margin-bottom: 20px; }
+
+    /* TABLE */
+    .t-head {
+      display: flex; align-items: center;
+      padding: 11px 28px; background: #E03D00;
+    }
+    .t-head > div { font-family: 'Sora', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.9px; text-transform: uppercase; color: rgba(255,255,255,0.8); }
+
+    .t-row {
+      display: flex; align-items: center;
+      padding: 14px 28px; border-bottom: 1px solid #FFF0E4;
+      transition: background .12s;
+    }
+    .t-row:last-child { border-bottom: none; }
+    .t-row:hover { background: #FFF8F4; }
+    .t-row.row-you { background: #FFF5EE; }
+
+    .c-pos  { width: 64px; }
+    .c-player { flex: 1; display: flex; align-items: center; gap: 10px; }
+    .c-att  { width: 140px; }
+    .c-time { width: 90px; }
+    .c-date { width: 160px; font-size: 13px; color: #9B6040; }
+
     .pos-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 16px;
-      background-color: #e0e0e0;
-      color: #333;
-      font-weight: bold;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 38px; padding: 4px 10px; border-radius: 20px;
+      font-family: 'Sora', sans-serif; font-size: 12px; font-weight: 800;
+      background: #F0D8C8; color: #6B4030;
     }
-    .top-1 { background-color: #ffd700; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
-    .top-2 { background-color: #c0c0c0; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
-    .top-3 { background-color: #cd7f32; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+    .pos-badge.gold   { background: #FFC107; color: #fff; }
+    .pos-badge.silver { background: #90A4AE; color: #fff; }
+    .pos-badge.bronze { background: #A1887F; color: #fff; }
 
-    .current-user-lbl {
-      color: var(--primary);
-      font-size: 12px;
-      margin-left: 8px;
+    .player-av {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      background: #EDCFBD; color: #4A1E00;
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 13px;
+      display: flex; align-items: center; justify-content: center;
     }
+    .player-av.av-you { background: #E03D00; color: #fff; }
 
-    .highlight-row { background-color: #fff8eb; }
+    .player-name { font-size: 14px; font-weight: 600; color: #1C0800; }
+    .you-chip { background: #FFF0E4; color: #E03D00; border: 1px solid #EDCFBD; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
 
-    .no-data { padding: 32px; text-align: center; color: var(--text-secondary); }
+    .att-num { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 800; color: #E03D00; }
+    .att-label { font-size: 12px; color: #9B6040; margin-left: 4px; }
+    .time-val { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; color: #1C0800; }
+
+    .no-data { padding: 56px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .no-data span { font-size: 40px; }
+    .no-data p { font-size: 15px; color: #6B4030; font-weight: 600; }
+
+    @media (max-width: 640px) {
+      .c-date { display: none; }
+      .main-content { padding: 20px 12px; }
+    }
   `]
 })
 export class RankingComponent implements OnInit {
@@ -112,18 +191,16 @@ export class RankingComponent implements OnInit {
   private router = inject(Router);
   private toastr = inject(ToastrService);
 
-  displayedColumns: string[] = ['position', 'username', 'attempts', 'duration_seconds', 'finished_at'];
   rankingData: RankingEntry[] = [];
   currentUsername = this.authService.currentUserValue?.username;
+  isLoading = true;
 
   ngOnInit() {
-  this.gameService.getRanking().subscribe({
-    next: (data) => this.rankingData = data,
-    error: (err) => this.toastr.error('Erro ao carregar ranking', 'Erro')
-  });
-}
-
-  goBack() {
-    this.router.navigate(['/dashboard']);
+    this.gameService.getRanking().subscribe({
+      next: (data) => { this.rankingData = data; this.isLoading = false; },
+      error: () => { this.toastr.error('Erro ao carregar ranking', 'Erro'); this.isLoading = false; }
+    });
   }
+
+  goBack() { this.router.navigate(['/dashboard']); }
 }
