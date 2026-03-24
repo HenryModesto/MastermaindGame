@@ -32,12 +32,14 @@ SWAGGER: <a href="https://mastermaindgame-production.up.railway.app/swagger" tar
 ![Flask](https://img.shields.io/badge/Flask-0D1117?style=for-the-badge&logo=flask&logoColor=white&labelColor=0D1117)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-0D1117?style=for-the-badge&logo=sqlalchemy&logoColor=red&labelColor=0D1117)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-0D1117?style=for-the-badge&logo=postgresql&logoColor=blue&labelColor=0D1117)
+![DBeaver](https://img.shields.io/badge/DBeaver-0D1117?style=for-the-badge&logo=dbeaver&logoColor=white&labelColor=0D1117)
 ![JWT](https://img.shields.io/badge/JWT-0D1117?style=for-the-badge&logo=jsonwebtokens&logoColor=purple&labelColor=0D1117)
 ![Marshmallow](https://img.shields.io/badge/Marshmallow-0D1117?style=for-the-badge&logo=python&logoColor=orange&labelColor=0D1117)
 ![Swagger](https://img.shields.io/badge/Swagger-0D1117?style=for-the-badge&logo=swagger&logoColor=green&labelColor=0D1117)
 ![Docker](https://img.shields.io/badge/Docker-0D1117?style=for-the-badge&logo=docker&logoColor=blue&labelColor=0D1117)
 ![Docker Compose](https://img.shields.io/badge/Docker_Compose-0D1117?style=for-the-badge&logo=docker&logoColor=blue&labelColor=0D1117)
 ![Pytest](https://img.shields.io/badge/Pytest-0D1117?style=for-the-badge&logo=pytest&logoColor=white&labelColor=0D1117)
+
 
 **Frontend:**
 
